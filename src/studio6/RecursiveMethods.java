@@ -1,5 +1,7 @@
 package studio6;
 
+import java.awt.Color;
+
 import edu.princeton.cs.introcs.StdDraw;
 
 public class RecursiveMethods {
@@ -12,9 +14,16 @@ public class RecursiveMethods {
 	 *         ...)
 	 */
 	public static double geometricSum(int n) {
-		
-			// FIXME compute the geometric sum for the first n terms recursively
+		double sum = 0.0;
+		sum = sum + Math.pow(0.5, n);
+		if (n == 0) {
 			return 0;
+		} else {
+			return Math.pow(0.5, n) + geometricSum(n-1);
+			
+		}
+			// FIXME compute the geometric sum for the first n terms recursively
+			 
 		
 	}
 
@@ -22,14 +31,18 @@ public class RecursiveMethods {
 	 * This method uses recursion to compute the greatest common divisor
 	 * for the two input values
 	 * 
-	 * @param p first operand
+	 * @param p first operand husfiusfsdasfs
 	 * @param q second operand
 	 * @return greatest common divisor of p and q
 	 */
 	public static int gcd(int p, int q) {
 		
-			// FIXME compute the gcd of p and q using recursion
-			return 0;
+		if (p%q == 0) {
+			return q;
+		} else {
+			return gcd(q, p % q);
+		}
+		
 		
 	}
 
@@ -55,12 +68,32 @@ public class RecursiveMethods {
 	 *                                      at the current depth
 	 * @param radius                        radius of the circle at the current
 	 *                                      depth
-	 * @param radiusMinimumDrawingThreshold radius above which drawing should occur
+	 * @param radiusMinimumDrawingThreshold sdpfsdjisfradius above which drawing should occur
 	 */
+	
 	public static void circlesUponCircles(double xCenter, double yCenter, double radius,
 			double radiusMinimumDrawingThreshold) {
 		
-		// FIXME
+		double bound = 5.0;
+		StdDraw.setXscale(-bound, bound);
+		StdDraw.setYscale(-bound, bound);
+		StdDraw.setPenColor(Color.RED);
+		StdDraw.setPenRadius(0.05);
+		double circle = circlesUponCirclesHelper (0.0, 0.0, 1.1, 1.0);
+			
+		
 	}
 
-}
+
+
+	public static double circlesUponCirclesHelper(double xCenter, double yCenter, double radius,
+			double radiusMinimumDrawingThreshold) {
+		if (radiusMinimumDrawingThreshold == 0) {
+			return 0;
+		} else {
+			return circlesUponCirclesHelper (xCenter, yCenter, radius,
+					 1.0/(radiusMinimumDrawingThreshold * radiusMinimumDrawingThreshold 
+					 * radiusMinimumDrawingThreshold));
+		}
+	}
+	}
